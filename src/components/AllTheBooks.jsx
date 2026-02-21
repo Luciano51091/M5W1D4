@@ -1,23 +1,27 @@
 import books from "../data/fantasy.json";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Container, Row, Form, InputGroup } from "react-bootstrap";
+import SingleBook from "./SingleBook";
+import { useState } from "react";
 
 function AllTheBooks() {
-  console.log(books);
+  const [search, setSearch] = useState("");
+  const [filteredBooks, setFilteredBooks] = useState(books);
+
+  const filterBooks = (event) => {
+    setSearch(event.target.value);
+    const bookArray = books.filter((book) => book.title.toLowerCase().includes(event.target.value.toLowerCase().trim()));
+    setFilteredBooks(bookArray);
+    console.log(event.target.value);
+  };
 
   return (
     <Container>
+      <InputGroup className="mb-3">
+        <Form.Control onKeyUp={filterBooks} placeholder="Cerca" />
+      </InputGroup>
       <Row>
-        {books.map((book) => (
-          <Col sm={6} md={4} lg={3} key={book.asin}>
-            <Card>
-              <Card.Img variant="top" src={book.img} />
-              <Card.Body>
-                <Card.Title>{book.title}</Card.Title>
-                <Card.Text>{book.price}</Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
+        {filteredBooks.map((myBook) => (
+          <SingleBook key={myBook.asin} book={myBook} />
         ))}
       </Row>
     </Container>
