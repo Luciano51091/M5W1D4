@@ -1,9 +1,11 @@
 import React from "react";
+import SingleComment from "./SingleComment";
 
-function CommentList() {
+function CommentList({ comments }) {
+  console.log(comments)
   return (
     <div>
-      <p>CommentList</p>
+      {comments.map(comment => <SingleComment key={}/>)}
     </div>
   );
 }

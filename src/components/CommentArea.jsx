@@ -14,7 +14,7 @@ function CommentArea({ book }) {
         },
       });
       const data = await response.json();
-      console.log(data);
+      setComments(data);
     } catch (error) {
       console.log(error);
     }
@@ -26,7 +26,7 @@ function CommentArea({ book }) {
   return (
     <>
       <AddComponent />
-      <CommentList />
+      <CommentList comments={comments} />
     </>
   );
 }
