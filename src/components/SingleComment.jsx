@@ -1,9 +1,10 @@
 import React from "react";
+import { ListGroup } from "react-bootstrap";
 
-function SingleComment() {
+function SingleComment({ comment }) {
   return (
     <>
-      <p> single comment </p>
+      <ListGroup.Item>{comment.comment}</ListGroup.Item>
     </>
   );
 }

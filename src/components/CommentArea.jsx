@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import AddComponent from "./AddComponent";
 import CommentList from "./CommentList";
+import AddComment from "./AddComment";
 
 function CommentArea({ book }) {
   const [comments, setComments] = useState([]);
@@ -25,7 +25,7 @@ function CommentArea({ book }) {
   }, []);
   return (
     <>
-      <AddComponent />
+      <AddComment asin={book.asin} />
       <CommentList comments={comments} />
     </>
   );

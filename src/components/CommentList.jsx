@@ -1,12 +1,14 @@
 import React from "react";
 import SingleComment from "./SingleComment";
+import { ListGroup } from "react-bootstrap";
 
 function CommentList({ comments }) {
-  console.log(comments)
   return (
-    <div>
-      {comments.map(comment => <SingleComment key={}/>)}
-    </div>
+    <ListGroup>
+      {comments.map((comment) => (
+        <SingleComment key={comment._id} comment={comment} />
+      ))}
+    </ListGroup>
   );
 }
 export default CommentList;
