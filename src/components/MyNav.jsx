@@ -3,8 +3,11 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import books from "../data/fantasy.json";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContextProvider";
 
 function MyNav({ setFilteredBooks }) {
+  const { toggleTheme } = useContext(ThemeContext);
   const filterBooks = (event) => {
     const bookArray = books.filter((book) => book.title.toLowerCase().includes(event.target.value.toLowerCase().trim()));
     setFilteredBooks(bookArray);
@@ -20,6 +23,7 @@ function MyNav({ setFilteredBooks }) {
             <Nav.Link href="#features">About</Nav.Link>
             <Nav.Link href="#pricing">Browse</Nav.Link>
           </Nav>
+          <button onClick={toggleTheme}>Cambia Tema</button>
           <Form.Control onKeyUp={filterBooks} placeholder="Cerca un libro" className="search-input" />
         </Container>
       </Navbar>
